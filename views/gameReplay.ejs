@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Replay</title>
+    <link type="text/css" rel="stylesheet" href="../../navmenu.css">
+    <link type="text/css" rel="stylesheet" href="../../gameReplay.css">
+    <script src="../../piece.js" defer></script>
+    <script src="../../gameReplay.js" defer></script>
+    <script>
+        const game = <%- JSON.stringify(game) %>;
+    </script>
+</head>
+<body>
+    <%- include('partials/navMenu'); %>
+
+    <div class="main_content">
+        <div class="board_container" id="boardContainer">
+            <div class="board" id="board"></div>
+            <div>
+                <span class="arrow" id="arrowBack"><i class="fas fa-arrow-alt-circle-left"></i></span>
+                <span class="arrow" id="arrowForward"><i class="fas fa-arrow-alt-circle-right"></i></span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

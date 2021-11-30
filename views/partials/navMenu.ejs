@@ -1,0 +1,51 @@
+<script src="https://kit.fontawesome.com/0445ab0d22.js" crossorigin="anonymous"></script>
+
+<script>
+    function toggleMenu() {
+        let nav = document.querySelector('.nav_cont');
+        nav.classList.toggle('active');
+
+        let openClose = document.querySelector('.open_close');
+        openClose.classList.toggle('active');
+    }
+</script>
+
+<nav class="nav_cont">
+    <ul>
+        <span class="icon"><div class="open_close" onclick="toggleMenu()"></div></i></span>
+        <li>
+            <a href="/">
+                <span class="icon"><i class="fas fa-home"></i></span>
+                <span class="title">Home</span>
+            </a>
+            <hr class="list_divider">
+        </li>
+        <li>
+            <a href="/game">
+                <span class="icon"><i class="fas fa-chess-board"></i></span>
+                <span class="title">Play</span>
+            </a>
+            <hr class="list_divider">
+        </li>
+        <li>
+            <a href="/viewGames">
+                <span class="icon"><i class="fas fa-book"></i></i></span>
+                <span class="title">Previous Games</span>
+            </a>
+            <hr class="list_divider">
+        </li>
+        <li>
+            <a href="/settings">
+                <span class="icon"><i class="fas fa-cog"></i></i></span>
+                <span class="title">Settings</span>
+            </a>
+            <hr class="list_divider">
+        </li>
+        <li>
+            <a href="/users/login">
+                <span class="icon"> <i class="fas fa-user-circle"></i></span>
+                <span class="title">Account</span>
+            </a>
+        </li>
+    </ul>
+</nav>

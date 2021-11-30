@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <link type="text/css" rel="stylesheet" href="../navmenu.css">
+    <link type="text/css" rel="stylesheet" href="settings.css">
+    <script src="settings.js" defer></script>
+    <script>
+        const autoQueen = "<%= userSettings.autoQueen %>";
+        const lowTimeWarning = "<%= userSettings.lowTimeWarning %>";
+        let boardColor1 = "<%= userSettings.boardColor1 %>";
+        let boardColor2 = "<%= userSettings.boardColor2 %>";
+        let chatBackgroundColor = "<%= userSettings.chatBackgroundColor %>";
+        let chatTextColor = "<%= userSettings.chatTextColor %>";
+    </script>
+</head>
+<body>
+    <%- include('partials/navMenu'); %>
+    
+    <div class="main_content">
+        <div class="error-msgs">
+            <%- include ("./partials/registerMessages"); %>
+        </div>
+        <p class="lead mb-3">Welcome <%= user.username %></p>
+        <a href="/users/logout" class="btn btn-secondary">Logout</a>
+        <br>
+        <br>
+        <form action="/settings" method="POST">
+            <div class="form-group">
+                <label for="autoQueen">Always Promote To Queen: </label>
+                <input id="autoQueen" name="autoQueen" type="checkbox" value="autoQueen">
+            </div>
+            <br>
+            <br>
+            <div class="form-group">
+                <label for="lowTimeWarning">Low Time Warning: </label>
+                <input id="lowTimeWarning" name="lowTimeWarning" type="checkbox" value="lowTimeWarning">
+            </div>
+            <br>
+            <br>
+            <div class="form-group">
+                <label for="boardColor1">Board Color 1: </label>
+                <input id="boardColor1" name="boardColor1" type="color">
+            </div>
+            <br>
+            <br>
+            <div class="form-group">
+                <label for="boardColor2">Board Color 2: </label>
+                <input id="boardColor2" name="boardColor2" type="color">
+            </div>
+            <br>
+            <br>
+            <div class="form-group">
+                <label for="chatBackgroundColor">Chat Background Color: </label>
+                <input id="chatBackgroundColor" name="chatBackgroundColor" type="color">
+            </div>
+            <br>
+            <br>
+            <div class="form-group">
+                <label for="chatTextColor">Chat Text Color: </label>
+                <input id="chatTextColor" name="chatTextColor" type="color">
+            </div>
+            <br>
+            <br>
+            <button type=submit>Save Changes</button>
+        </form>
+        <br>
+        <br>
+        <div board class="board">
+            <div class="square light_square"></div>
+            <div class="square dark_square"></div>
+            <div class="square dark_square"></div>
+            <div class="square light_square"></div>
+        </div>
+        <br>
+        <br>
+        <div class="chat">
+            <div class="chat_contents">
+                <div class="chat_header">
+                    <h2>Chat</h2>
+                </div>
+                <div class="chat_messages" id="chatMessages">
+                    <ul class="message_list" id="messageList">
+                        <li>User1: Message 1</li>
+                        <hr class="chat_line">
+                        <li>User2: Message 2</li>
+                    </ul>
+                </div>
+                <div class="chat_input">
+                    <input id="chatMessage" type="text" placeholder="Type message here...">
+                    <button id="chatSubmit" class="chat_submit">Send</button>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <form action="/settings/changePassword" method="POST">
+            <div class="form-group">
+                <label for="oldPassword">Old Password: </label>
+                <input id="oldPassword" name="oldPassword" type="password">
+            </div>
+            <br>
+            <br>
+            <div class="form-group">
+                <label for="password">New Password: </label>
+                <input id="password" name="password" type="text">
+            </div>
+            <br>
+            <br>
+            <div class="form-group">
+                <label for="password2">Confirm Password: </label>
+                <input id="password2" name="password2" type="text">
+            </div>
+            <br>
+            <br>
+            <button id="passwordSubmit" class="password_submit">Change Password</button>
+        </form>
+        <br>
+        <br>
+        <form action="/settings/deleteAccount" method="POST" onSubmit="return validateDeleteAccount()">
+            <label for="validateDelete">Enter "Delete" to Continue: </label>
+            <input id="validateDelete" name="validateDelete" type="text">
+            <br>
+            <br>
+            <button id="deleteSubmit" class="deleteSubmit">Delete Account</button>
+        </form>
+    </div>
+
+</body>
+</html>

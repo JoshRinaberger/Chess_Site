@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHESS</title>
+    <link type="text/css" rel="stylesheet" href="../navmenu.css">
+    <link rel="stylesheet" href="../game.css">
+    <script src="https://cdn.socket.io/3.1.3/socket.io.min.js" integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js"></script>
+    <script src="https://kit.fontawesome.com/0445ab0d22.js" crossorigin="anonymous"></script>
+    <script src="../piece.js" defer></script>
+    <script src="../move.js" dever></script>
+    <script src="../game.js" defer></script>
+    <script>
+        const gameId = "<%= gameId %>";
+        const authUsername = "<%= username %>";
+    </script>
+</head>
+<body>
+    <%- include('partials/navMenu'); %> 
+    <div class="main_content">
+        <div class="board_container" id="boardContainer">
+            <p class="timer" id="timer1">10:00</p>
+            <div class="board" id="board"></div>
+            <div class="promotion_menu" id="promotionMenu">
+                <table class="promotion_choices">
+                    <td class="promotion_choice" id="promotionQueen">
+                        <img src="/images/w_queen_2x_ns.png" id="promotionQueenImg">
+                    </td>
+                    <td class="promotion_choice" id="promotionRook">
+                        <img src="/images/w_rook_2x_ns.png" id="promotionRookImg">
+                    </td>
+                    <td class="promotion_choice" id="promotionBishop">
+                        <img src="/images/w_bishop_2x_ns.png" id="promotionBishopImg">
+                    </td>
+                    <td class="promotion_choice" id="promtionKnight">
+                        <img src="/images/w_knight_2x_ns.png" id="promotionKnightImg">
+                    </td>
+                </table>
+            </div>
+            <p class="timer" id="timer2">10:00</p>
+        </div>
+
+        <div class="game_controls" id="gameControls">
+            <button class="color-button" id="color-button" type="button">White</button>
+            <button class="start-button" id="start-button" type="button">Start Game</button>
+            <input type="number" id="startTime" value="10" min="1" max="60">   
+        </div>
+
+        <span class="flip_board" id="flipBoardButton">
+            <i class="fas fa-sync"></i>
+        </span>
+
+        <div class="game_end_window" id="gameEndWindow">
+            <div class="game_end_content">
+                <div class="game_end_top">
+                    <span class="game_end_close">&times</span>
+                </div>
+                <div class="game_end_main">
+                    <p id = "gameEndText">TEXT</p>
+                </div>
+                <div class="game_end_bottom">
+                </div>
+            </div>
+        </div>
+        <div class="chat">
+            <div class="chat_contents">
+                <div class="chat_header">
+                    <h2>Chat</h2>
+                </div>
+                <div class="chat_messages" id="chatMessages">
+                    <ul class="message_list" id="messageList">
+        
+                    </ul>
+                </div>
+                <div class="chat_input">
+                    <input id="chatMessage" type="text" placeholder="Type message here...">
+                    <button id="chatSubmit" class="chat_submit">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

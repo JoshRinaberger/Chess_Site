@@ -1,0 +1,77 @@
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
+:root {
+    --cell-size: 10vmin;
+    --piece-size: calc(var(--cell-size) * .8);
+    --piece-size-hover: calc(var(--cell-size) * .95);
+}
+
+body {
+    background-color: #505050;
+}
+
+.main_content {
+    font-family: sans-serif;
+}
+
+.board_container {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+}
+
+.board {
+    width: 80vw;
+    height: 80vw;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(8, auto);
+}
+
+.lightSquare, .darkSquare {
+    width: var(--cell-size);
+    height: var(--cell-size);
+}
+
+.lightSquare {
+    border:0px;
+    background-color: #859094;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.darkSquare {
+    border: 0px;
+    background-color: #1D9ECD;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.piece-image {
+    display: block;
+    width: var(--piece-size);
+    height: var(--piece-size);
+}
+
+.arrow {
+    font-size: 30px;
+    color: #66FCF1
+    
+}
+
+.arrow:hover {
+    color: #45A29E;
+}

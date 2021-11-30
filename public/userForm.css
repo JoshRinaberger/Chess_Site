@@ -1,0 +1,113 @@
+html {
+    height: 100%;
+  }
+
+  body {
+    margin:0;
+    padding:0;
+    font-family: sans-serif;
+    background: #0B0C10;
+  }
+  
+  .form-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(#15171f, #232d3a);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border: solid #45A29E;
+    border-radius: 10px;
+  }
+  
+  .form-box h2 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: #66FCF1;
+    text-align: center;
+  }
+
+  .form-box .form-group {
+    position: relative;
+  }
+  
+  .form-box .form-group input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #C5C6C7;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #45A29E;
+    outline: none;
+    background: transparent;
+  }
+
+  .form-box .form-group label {
+    position: absolute;
+    top:0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #66FCF1;
+    pointer-events: none;
+  }
+
+  .submit-button {
+      padding: 5px 10px;
+      background-color: #4b4b4b;
+      font-size: 20px;
+      color: #66FCF1;
+      border: 1px solid #45A29E;
+      border-radius: 5px;
+      width: 120px;
+      cursor: pointer;
+      transition: all 0.5s;
+  }
+
+  .submit-button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+
+  .submit-button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+  
+  .submit-button:hover span {
+    padding-right: 25px;
+  }
+  
+  .submit-button:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+
+  .form-box p {
+    padding: 10px 0;
+    font-size: 16px;
+    color: #66FCF1;
+    text-align: center;
+  }
+
+  .swap-link {
+    padding: 10px 0;
+    font-size: 16px;
+    color: #C5C6C7;
+    text-align: center;
+  }
+
+  .error-msgs {
+    color: red;
+    text-align: center;
+  }

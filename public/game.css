@@ -1,0 +1,263 @@
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
+:root {
+    --cell-size: 10vmin;
+    --piece-size: calc(var(--cell-size) * .8);
+    --piece-size-hover: calc(var(--cell-size) * .95);
+}
+
+body {
+    background-color: #505050;
+}
+
+.main_content {
+    font-family: sans-serif;
+}
+
+.board_container {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+}
+
+.board {
+    width: 80vw;
+    height: 80vw;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(8, auto);
+}
+
+.lightSquare, .darkSquare {
+    width: var(--cell-size);
+    height: var(--cell-size);
+}
+
+.lightSquare {
+    border:0px;
+    background-color: #859094;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.darkSquare {
+    border: 0px;
+    background-color: #1D9ECD;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.selectedSquare {
+    background-color: yellow
+}
+
+.piece-image {
+    display: block;
+    width: var(--piece-size);
+    height: var(--piece-size);
+}
+
+.piece-image:hover {
+    width: var(--piece-size-hover);
+    height: var(--piece-size-hover);
+}
+
+.piece-image:active {
+    pointer-events: none;
+}
+
+.legalMoveSquare {
+    background-color: green;
+    border: 1px solid black;
+}
+
+.game_end_window {
+    display: none;
+    position:fixed;
+    z-index: 3;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.game_end_content {
+    background-color: #232d3a;
+    color: #66FCF1;
+    margin: 15% auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 40%;
+    height: 40%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    animation-name: fadein;
+    animation-duration: 0.4s
+}
+
+@keyframes fadein {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
+}
+
+.game_end_close {
+    color: #66FCF1;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+.game_end_close:hover,
+  .game_end_close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.game_end_top, .game_end_bottom {
+    padding: 2px 16px;
+    background-color: #45A29E;
+    color: white;
+    height: 8%;
+}
+
+.game_end_main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 84%;
+    text-align: center;
+    font-size: 24px;
+}
+
+.chat {
+    display: flex;
+    flex: 0.2;
+    flex-direction: column;
+    background-color:#232d3a;
+    border: 1px solid #888;
+}
+
+.chat_contents {
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.chat_header {
+    color: #F5F5F5;
+    text-align: center;
+    padding: 10px;
+}
+
+.chat_messages {
+    padding: 22px 12px;
+    display: flex;
+    width: 100%;
+    height: 150px;
+    overflow-y: auto;
+}
+
+.message_list {
+    color: white;
+    list-style: none;
+    font-size: 14px;
+    width: 100%;
+}
+
+.chat_input {
+    padding: 22px 12px;
+    display: flex;
+}
+
+.chat_input input {
+    flex-grow: 1;
+    background-color: transparent;
+    border: none;
+    color: #F5F5F5;
+}
+
+.chat_line {
+    color: white;
+    border: 1px solid white;
+    margin-right: 30px;
+    opacity: 0.2;
+    padding: 0;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.promotion_menu {
+    z-index: 2;
+    position: absolute;
+    display: none;
+}
+
+.promotion_choice {
+    height: 75px;
+    width: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #45A29E;
+    border: 2px solid black;
+    cursor: pointer;
+}
+
+.promotion_choice:hover {
+    background-color: #888;
+}
+
+.promotion_choice img{
+    width: 70%;
+    height: 70%;
+}
+
+.promotion_choice img:hover{
+    width: 85%;
+    height: 85%;
+}
+
+.game_controls {
+    display: block;
+}
+
+.flip_board {
+    margin: 8px;
+    position: relative;
+    display: block;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    color: #66FCF1
+}
+
+.flip_board:hover {
+    color: #45A29E
+}
+
+.flip_board .fas {
+    font-size: 24px;
+}
+
+.timer {
+    display: flex;
+    background-color: #fff;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    margin: 5px;
+    width: 200px;
+    height: 70px;
+}

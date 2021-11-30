@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Games</title>
+    <link type="text/css" rel="stylesheet" href="../../navmenu.css">
+    <link type="text/css" rel="stylesheet" href="../../viewGamesList.css">
+    <script src="../../viewGamesList.js" defer></script>
+    <script src="https://kit.fontawesome.com/0445ab0d22.js" crossorigin="anonymous"></script>
+    <script>
+        username = "<%= username %>";
+        const pageNumber = "<%= pageNumber %>";
+        const gameList = <%- JSON.stringify(gameList) %>;
+        numberOfPages = "<%= numberOfPages %>";
+    </script>
+</head>
+<body>
+    <%- include('partials/navMenu'); %>
+
+    <div class="main_content">
+        <p>Showing Page <%= pageNumber %> of <%= numberOfPages %>.</p>
+        <br>
+        <p>Sort By: </p>
+        <form action="/viewGames/newest" method="POST" id="sortNewestForm">
+            <input type="hidden" name="pageNumber" value="<%= pageNumber %>">
+            <input type="submit" name="sortNewestSubmit" value="Newest">
+        </form>
+        <form action="/viewGames/oldest" method="POST" id="sortOldestForm">
+            <input type="hidden" name="pageNumber" value="<%= pageNumber %>">
+            <input type="submit" name="sortOldestSubmit" value="Oldest">
+        </form>
+        <br>
+        <table id = "gameListTable">
+            <tr>
+                <th>Date</th>
+                <th>Opponent</th>
+                <th>Moves</th>
+                <th>Result</th>
+                <th></th>
+            </tr>
+        </table>
+        <br>
+
+        <span class="arrow" id="arrowBack"><i class="fas fa-arrow-alt-circle-left"></i></span>
+        <form action="/viewGames/changePage" method="POST" id="pageNumberForm">
+            <input type="hidden" name="dateSortType" value="<%= dateSortType %>">
+            <input type="number" name="newPageNumber" id="pageNumberInput">
+            <input type="submit" name="pageNumberSubmit" id="pageNumberSubmit" value="Go To Page">
+        </form>
+        <span class="arrow" id="arrowForward"><i class="fas fa-arrow-alt-circle-right"></i></span>
+    </div>
+</body>
+</html>

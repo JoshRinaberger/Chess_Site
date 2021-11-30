@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="../animation.css">
+    <link rel="stylesheet" href="../userForm.css">
+    <link type="text/css" rel="stylesheet" href="../navmenu.css">
+    <script type="module" src="../userAnim.js" defer></script>
+</head>
+<body>
+  <canvas id="bg"></canvas>
+  <div class = "form-box">
+    <h2>Login</h2>
+    <div class="error-msgs">
+      <%- include ("./partials/registerMessages"); %>
+    </div>
+    <form action="/users/login" method="POST">
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <br>
+          <br>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="form-control"
+            placeholder="Enter Email"
+          />
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <br>
+          <br>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="form-control"
+            placeholder="Enter Password"
+          />
+        </div>
+        <button type="submit" class="submit-button">
+          <span>Login</span>
+        </button>
+      </form>
+      <p> No Account?
+        <br>
+        <br>
+        <a class="swap-link" href="/users/register">Register</a>
+      </p>
+      
+  </div>
+
+  <%- include('partials/navMenu'); %> 
+</body>
+</html>
