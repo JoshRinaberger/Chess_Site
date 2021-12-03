@@ -6,6 +6,10 @@
     --cell-size: 10vmin;
     --piece-size: calc(var(--cell-size) * .8);
     --piece-size-hover: calc(var(--cell-size) * .95);
+    --boardColor1: #859094;
+    --boardColor2: #1D9ECD;
+    --chatBackgroundColor: #232d3a;;
+    --chatTextColor: #F5F5F5;
 }
 
 body {
@@ -42,7 +46,7 @@ body {
 
 .lightSquare {
     border:0px;
-    background-color: #859094;
+    background-color: var(--boardColor1);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -52,7 +56,7 @@ body {
 
 .darkSquare {
     border: 0px;
-    background-color: #1D9ECD;
+    background-color: var(--boardColor2);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -146,7 +150,7 @@ body {
     display: flex;
     flex: 0.2;
     flex-direction: column;
-    background-color:#232d3a;
+    background-color:var(--chatBackgroundColor);
     border: 1px solid #888;
 }
 
@@ -156,7 +160,7 @@ body {
 }
 
 .chat_header {
-    color: #F5F5F5;
+    color: var(--chatTextColor);
     text-align: center;
     padding: 10px;
 }
@@ -170,7 +174,7 @@ body {
 }
 
 .message_list {
-    color: white;
+    color: var(--chatTextColor);
     list-style: none;
     font-size: 14px;
     width: 100%;
@@ -185,12 +189,12 @@ body {
     flex-grow: 1;
     background-color: transparent;
     border: none;
-    color: #F5F5F5;
+    color: var(--chatTextColor);
 }
 
 .chat_line {
-    color: white;
-    border: 1px solid white;
+    color: var(--chatTextColor);
+    border: 1px solid var(--chatTextColor);
     margin-right: 30px;
     opacity: 0.2;
     padding: 0;

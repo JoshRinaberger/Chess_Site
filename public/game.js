@@ -291,6 +291,19 @@ function addPiece(cellIndex, pieceImage, pieceColor, pieceId) {
     boardPieces[cellIndex] = new Piece(pieceColor, pieceId, cellIndex, pieceImage);
 }
 
+function updateBoardColors() {
+    document.documentElement.style.setProperty('--boardColor1', boardColor1);
+    document.documentElement.style.setProperty('--boardColor2', boardColor2);
+}
+
+function updateChatColors() {
+    document.documentElement.style.setProperty('--chatBackgroundColor', chatBackgroundColor);
+    document.documentElement.style.setProperty('--chatTextColor', chatTextColor);
+}
+
+updateBoardColors();
+updateChatColors();
+
 // ========================== SELECTING PIECES FROM THE BOARD =====================
 
 function handleClick(e) {
