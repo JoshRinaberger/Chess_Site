@@ -192,6 +192,7 @@ function flipBoard() {
     // when the game starts, the timer should always start on the bottom
     if (gameStarted) {
         flipTimers();
+        flipMaterialDifferences();
     }
 }
 
@@ -1228,7 +1229,7 @@ function makeMove(startIndex, endIndex, moveType) {
         whiteFilteredLegalMoves = filterChecksFromLegalMoves(whitePossibleLegalMoves, "white");
     }
     
-    
+    updateMaterialDifference();
 
     checkForWinOrStalemate();
     checkForDraws();
@@ -1541,6 +1542,42 @@ function calculateMaterial(color) {
     }
 
     return material;
+}
+
+function updateMaterialDifference() {
+    let whiteMaterial = calculateMaterial("white");
+    let blackMaterial = calculateMaterial("black");
+
+    let materialDifferenceWhite = whiteMaterial - blackMaterial;
+    let materialDifferenceBlack = materialDifferenceWhite * -1;
+
+    if (materialDifferenceWhite > -1) {
+        materialDifferenceWhite = "+" + materialDifferenceWhite;
+    }
+
+    if (materialDifferenceBlack > -1) {
+        materialDifferenceBlack = "+" + materialDifferenceBlack;
+    }
+
+    const topMaterialDifference = document.getElementById("topMaterialDifference");
+    const bottomMaterialDifference = document.getElementById("bottomMaterialDifference");
+    
+    if (boardRotation == "white") {
+        topMaterialDifference.innerHTML = materialDifferenceBlack;
+        bottomMaterialDifference.innerHTML = materialDifferenceWhite;
+    } else {
+        topMaterialDifference.innerHTML = materialDifferenceWhite;
+        bottomMaterialDifference.innerHTML = materialDifferenceBlack;
+    }
+}
+
+function flipMaterialDifferences() {
+    const topMaterialDifference = document.getElementById("topMaterialDifference");
+    const bottomMaterialDifference = document.getElementById("bottomMaterialDifference");
+
+    const topOldMaterial = topMaterialDifference.innerHTML;
+    topMaterialDifference.innerHTML = bottomMaterialDifference.innerHTML;
+    bottomMaterialDifference.innerHTML = topOldMaterial;
 }
 
 
