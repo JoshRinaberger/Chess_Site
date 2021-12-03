@@ -11,6 +11,8 @@ let currentMove = 0;
 let totalMoves = game.startIndexes.length;
 console.log(totalMoves);
 
+let boardRotation = "white";
+
 // ================= Board Setup ===============
 
 createBoard();
@@ -230,6 +232,8 @@ function showNextMove() {
 
     console.log(currentMove);
     currentMove++;
+
+    updateMaterialDifference();
 }
 
 function showPreviousMove() {
@@ -264,6 +268,8 @@ function showPreviousMove() {
     rewindPawnPromotion(startIndex, moveType);
 
     currentMove--;
+
+    updateMaterialDifference();
 }
 
 // moves a piece from the starting index to the end index
@@ -415,4 +421,60 @@ function rewindPawnPromotion(startIndex, moveType) {
         }
 
     }
+}
+
+// ============================================================
+
+// returns the total value of piece material that a given player has
+function calculateMaterial(color) {
+    let material = 0;
+
+    for (let i = 0; i < 64; i++){
+        
+        piece = boardPieces[i];
+
+        if (piece != null) {
+            if (piece.color == color) {
+                material += piece.materialValue;
+            }
+        }  
+    }
+
+    return material;
+}
+
+function updateMaterialDifference() {
+    let whiteMaterial = calculateMaterial("white");
+    let blackMaterial = calculateMaterial("black");
+
+    let materialDifferenceWhite = whiteMaterial - blackMaterial;
+    let materialDifferenceBlack = materialDifferenceWhite * -1;
+
+    if (materialDifferenceWhite > -1) {
+        materialDifferenceWhite = "+" + materialDifferenceWhite;
+    }
+
+    if (materialDifferenceBlack > -1) {
+        materialDifferenceBlack = "+" + materialDifferenceBlack;
+    }
+
+    const topMaterialDifference = document.getElementById("topMaterialDifference");
+    const bottomMaterialDifference = document.getElementById("bottomMaterialDifference");
+    
+    if (boardRotation == "white") {
+        topMaterialDifference.innerHTML = materialDifferenceBlack;
+        bottomMaterialDifference.innerHTML = materialDifferenceWhite;
+    } else {
+        topMaterialDifference.innerHTML = materialDifferenceWhite;
+        bottomMaterialDifference.innerHTML = materialDifferenceBlack;
+    }
+}
+
+function flipMaterialDifferences() {
+    const topMaterialDifference = document.getElementById("topMaterialDifference");
+    const bottomMaterialDifference = document.getElementById("bottomMaterialDifference");
+
+    const topOldMaterial = topMaterialDifference.innerHTML;
+    topMaterialDifference.innerHTML = bottomMaterialDifference.innerHTML;
+    bottomMaterialDifference.innerHTML = topOldMaterial;
 }
