@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const {v4: uuidv4} = require('uuid');
+const { ensureAuthenticated } = require('../config/auth');
 
 const io = require('socket.io')(3001, {
     cors: {
@@ -10,6 +11,7 @@ const io = require('socket.io')(3001, {
 });
 
 const SavedGame = require('../models/savedGame');
+const UserSettings = require('../models/userSettings');
 
 router.get('/', (req, res) => {
     res.redirect(`/game/${uuidv4()}`);
@@ -23,7 +25,35 @@ router.get('/:id', (req, res) => {
         console.log(authUsername);
     }
 
-    res.render('game', { gameId: req.params.id, username: authUsername });
+    // retrieve user settings if user is logged in and render the game with them
+    // otherwise render the game without them
+    if (req.isAuthenticated()) {
+        // retrieve saved user settings
+        UserSettings.findOne({ email: req.user.email })
+        .then(userSettings => {
+            if (userSettings) {
+                console.log("USER SETTINGS FOUND");
+                let savedUserSettings = userSettings;
+
+                console.log(savedUserSettings);
+
+                res.render('game', { gameId: req.params.id, username: authUsername, userSettings: savedUserSettings });
+            }
+        });
+
+    } else {
+        // if the user is not logged in, then provide the default user settings
+        const defaultUserSettings = {
+            autoQueen: false,
+            lowTimeWarning: true,
+            boardColor1: "#859094",
+            boardColor2: "#1D9ECD",
+            chatBackgroundColor: "#232d3a",
+            chatTextColor: "#ffffff" 
+        }
+
+        res.render('game', { gameId: req.params.id, username: authUsername, userSettings: defaultUserSettings });
+    }
 });
 
 

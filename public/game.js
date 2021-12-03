@@ -1451,8 +1451,6 @@ function checkInsufficientMaterial(whiteMaterial, blackMaterial, combo1, combo2)
         if (whiteMaterial[i].id == 'bishop') {
             whiteHasBishop = true;
 
-            console.log("BOOF");
-
             // find if the bishop is on a light or a dark square
             let bishopRank = Math.floor(whiteMaterial[i].index / 8);
             let bishopColumn = whiteMaterial[i].index % 8;
