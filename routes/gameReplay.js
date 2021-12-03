@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const SavedGame = require('../models/savedGame');
+const UserSettings = require('../models/userSettings');
 
 router.get('/:gameId', async (req, res) => {
     let game = await getGameFromId(req.params.gameId);
@@ -9,7 +10,18 @@ router.get('/:gameId', async (req, res) => {
     console.log(req.params.gameId);
     console.log(game);
 
-    res.render('gameReplay', { game: game });
+    // retrieve saved user settings
+    UserSettings.findOne({ email: req.user.email })
+    .then(userSettings => {
+        if (userSettings) {
+            console.log("USER SETTINGS FOUND");
+            let savedUserSettings = userSettings;
+
+            console.log(savedUserSettings);
+
+            res.render('gameReplay', { game: game, userSettings: savedUserSettings });
+        }
+    });
 });
 
 async function getGameFromId (gameId) {

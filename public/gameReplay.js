@@ -151,6 +151,13 @@ function addPiece(cellIndex, pieceImage, pieceColor, pieceId) {
     boardPieces[cellIndex] = new Piece(pieceColor, pieceId, cellIndex, pieceImage);
 }
 
+function updateBoardColors() {
+    document.documentElement.style.setProperty('--boardColor1', boardColor1);
+    document.documentElement.style.setProperty('--boardColor2', boardColor2);
+}
+
+updateBoardColors();
+
 // ===================== Increment Through Moves =================
 
 const arrowBack = document.getElementById("arrowBack");

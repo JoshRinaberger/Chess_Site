@@ -6,6 +6,8 @@
     --cell-size: 10vmin;
     --piece-size: calc(var(--cell-size) * .8);
     --piece-size-hover: calc(var(--cell-size) * .95);
+    --boardColor1: #859094;
+    --boardColor2: #1D9ECD;
 }
 
 body {
@@ -42,7 +44,7 @@ body {
 
 .lightSquare {
     border:0px;
-    background-color: #859094;
+    background-color: var(--boardColor1);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -52,7 +54,7 @@ body {
 
 .darkSquare {
     border: 0px;
-    background-color: #1D9ECD;
+    background-color: var(--boardColor2);
     display: flex;
     justify-content: center;
     align-items: center;
